@@ -28,7 +28,9 @@ Do
         x = _MouseX
         y = _MouseY
         rm = _MouseButton(1)
-        If x <> 112 And x <> 112 + 302 And y <> 149 And y <> 149 + 366 Then GoTo start
+        If x <> 112 And x <> 112 + 302 And y <> 149 And y <> 149 + 366 Then 
+                    _freeimage image2
+                    GoTo start
+                End if
     Wend
 Loop Until _KeyDown(13)
-
