@@ -28,7 +28,7 @@ Do
         End If
     Wend
     _Limit 30
-Loop Until _KeyDown(13)
+Loop
 login: Do
     Cls , _RGB(127, 127, 127)
     Color _RGB(255, 255, 255), _RGB(127, 127, 127)
@@ -48,12 +48,20 @@ login: Do
         GoTo resetpassword
     End If
     If idx$ <> id$ And passwordx$ <> password$ Then
-        Color _RGB(255, 0, 0)
-        Print "Incorrect Details"
-        Print "Usernames and Passwords are case sensitive"
+        Do
+            Cls , _RGB(127, 127, 127)
+            Color _RGB(255, 0, 0)
+            Print "Incorrect Details"
+            Print "Usernames and Passwords are case sensitive"
+            Print "Press R to retry"
+            _Display
+            retry$ = InKey$
+            retry$ = UCase$(retry$)
+            If retry$ = "R" Then GoTo login
+        Loop
     End If
     _Limit 30
-Loop Until _KeyDown(13)
+Loop
 create:
 Cls , _RGB(127, 127, 127)
 Color _RGB(255, 255, 255), _RGB(127, 127, 127)
@@ -64,33 +72,109 @@ Print "Enter your accounts password"
 Input password$
 _Display
 lenpass = Len(password$)
+sumcheck = 0
 For h = 1 To lenpass
     Cls
     z$ = Mid$(password$, h, 1)
-    If InStr("!@#$%^&*()", z$) = 0 Then
-        Color _RGB(255, 0, 0), _RGB(127, 127, 127)
-        _PrintString (120, 80), "Weak Password, a strong password should contain at least one special character"
-        Do
-            Print "Press T to try again"
-            tryagain$ = InKey$
-            tryagain$ = UCase$(tryagain$)
-            If tryagain$ = "T" Then GoTo create
-        Loop Until tryagain$ = "T"
-        _Display
-    End If
+    specialcheck = InStr("!@#$%^&*()", z$)
+    numcheck = InStr("1234567890", z$)
+    capitalcheck = InStr("ABCDEFGHIJKLMNOPQRSTUVWXYZ", z$)
+    If lenpass > 8 Then sumcheck = sumcheck + 1
+    If specialcheck = 0 Then sumcheck = sumcheck + 1
+    If numcheck = 0 Then sumcheck = sumcheck + 1
+    If capitalcheck = 0 Then sumcheck = sumcheck + 1
+    If h = lenpass Then Exit For
 Next
-Open "UserData.txt" For Append As #fh
-Print #fh, id$
-Print #fh, password$
-Close #fh
-Do
-    Cls
-    Print "Press E to return to the menu"
-    return$ = InKey$
-    return$ = UCase$(return$)
-    If return$ = Chr$(69) Then GoTo start:
-    _Limit 30
-Loop Until return$ = Chr$(69)
+If sumcheck = 4 Then
+    Do
+        Cls
+        Color _RGB(255, 0, 0), _RGB(127, 127, 127)
+        Print "Weak Password"
+        Print "A strong password should be"
+        Color _RGB(0, 255, 0), _RGB(127, 127, 127)
+        Print "At least 8 characters long"
+        Print "Have at least 1 special character"
+        Print "Have at least one number"
+        Print "Have at least one capital letter"
+        Color _RGB(255, 255, 255), _RGB(127, 127, 127)
+        Print "Press T to try again"
+        _Display
+        tryagain$ = InKey$
+        tryagain$ = UCase$(tryagain$)
+        If tryagain$ = "T" Then GoTo create
+    Loop
+ElseIf sumcheck = 3 Then
+    Do
+        Cls
+        Color _RGB(255, 255, 0), _RGB(127, 127, 127)
+        Print "Medium Password"
+        Print "A strong password should be"
+        Color _RGB(0, 255, 0), _RGB(127, 127, 127)
+        Print "At least 8 characters long"
+        Print "Have at least 1 special character"
+        Print "Have at least one number"
+        Print "Have at least one capital letter"
+        Color _RGB(255, 255, 255), _RGB(127, 127, 127)
+        Print "Press T to try again"
+        _Display
+        tryagain$ = InKey$
+        tryagain$ = UCase$(tryagain$)
+        If tryagain$ = "T" Then GoTo create
+    Loop
+ElseIf sumcheck = 2 Then
+    Do
+        Cls , _RGB(127, 127, 127)
+        Color _RGB(55, 216, 55), _RGB(127, 127, 127)
+        Print "Normal Password"
+        Print "A strong password should be"
+        Color _RGB(0, 255, 0), _RGB(127, 127, 127)
+        Print "At least 8 characters long"
+        Print "Have at least 1 special character"
+        Print "Have at least one number"
+        Print "Have at least one capital letter"
+        Color _RGB(255, 255, 255), _RGB(127, 127, 127)
+        Print "Press T to try again"
+        _Display
+        tryagain$ = InKey$
+        tryagain$ = UCase$(tryagain$)
+        If tryagain$ = "T" Then GoTo create
+    Loop
+ElseIf sumcheck = 1 Then
+    Do
+        Cls , _RGB(127, 127, 127)
+        Color _RGB(50, 255, 139), _RGB(127, 127, 127)
+        Print "Good Password"
+        Print "A strong password should be"
+        Color _RGB(0, 255, 0), _RGB(127, 127, 127)
+        Print "At least 8 characters long"
+        Print "Have at least 1 special character"
+        Print "Have at least one number"
+        Print "Have at least one capital letter"
+        Color _RGB(255, 255, 255), _RGB(127, 127, 127)
+        Print "Press T to try again"
+        _Display
+        tryagain$ = InKey$
+        tryagain$ = UCase$(tryagain$)
+        If tryagain$ = "T" Then GoTo create
+    Loop
+ElseIf sumcheck = 0 Then
+    Open "UserData.txt" For Append As #fh
+    Print #fh, id$
+    Print #fh, password$
+    Close #fh
+    Do
+        Cls , _RGB(127, 127, 127)
+        Color _RGB(0, 255, 0), _RGB(127, 127, 127)
+        Print "Strong Password"
+        Print "Account successfully created!"
+        Color _RGB(0, 0, 0)
+        Print "Press E to return to the menu"
+        return$ = InKey$
+        return$ = UCase$(return$)
+        If return$ = Chr$(69) Then GoTo start:
+        _Limit 30
+    Loop
+End If
 loggedin:
 resetpassword:
 incorrectdetails:
