@@ -74,21 +74,20 @@ _Display
 lenpass = Len(password$)
 sumcheck = 0
 For h = 1 To lenpass
-    Cls
     z$ = Mid$(password$, h, 1)
     specialcheck = InStr("!@#$%^&*()", z$)
     numcheck = InStr("1234567890", z$)
     capitalcheck = InStr("ABCDEFGHIJKLMNOPQRSTUVWXYZ", z$)
-    If lenpass > 8 Then sumcheck = sumcheck + 1
-    If specialcheck = 0 Then sumcheck = sumcheck + 1
-    If numcheck = 0 Then sumcheck = sumcheck + 1
-    If capitalcheck = 0 Then sumcheck = sumcheck + 1
-    If h = lenpass Then Exit For
+    If lenpass <= 8 Then sumcheck = sumcheck + 1
+    If specialcheck <= 1 Then sumcheck = sumcheck + 1
+    If numcheck <= 1 Then sumcheck = sumcheck + 1
+    If capitalcheck <= 1 Then sumcheck = sumcheck + 1
 Next
 If sumcheck = 4 Then
     Do
         Cls
         Color _RGB(255, 0, 0), _RGB(127, 127, 127)
+        Print sumcheck; "out of 4"
         Print "Weak Password"
         Print "A strong password should be"
         Color _RGB(0, 255, 0), _RGB(127, 127, 127)
@@ -103,10 +102,12 @@ If sumcheck = 4 Then
         tryagain$ = UCase$(tryagain$)
         If tryagain$ = "T" Then GoTo create
     Loop
-ElseIf sumcheck = 3 Then
+End If
+If sumcheck = 3 Then
     Do
         Cls
         Color _RGB(255, 255, 0), _RGB(127, 127, 127)
+        Print sumcheck; "out of 4"
         Print "Medium Password"
         Print "A strong password should be"
         Color _RGB(0, 255, 0), _RGB(127, 127, 127)
@@ -121,10 +122,12 @@ ElseIf sumcheck = 3 Then
         tryagain$ = UCase$(tryagain$)
         If tryagain$ = "T" Then GoTo create
     Loop
-ElseIf sumcheck = 2 Then
+End If
+If sumcheck = 2 Then
     Do
         Cls , _RGB(127, 127, 127)
         Color _RGB(55, 216, 55), _RGB(127, 127, 127)
+        Print sumcheck; "out of 4"
         Print "Normal Password"
         Print "A strong password should be"
         Color _RGB(0, 255, 0), _RGB(127, 127, 127)
@@ -139,10 +142,12 @@ ElseIf sumcheck = 2 Then
         tryagain$ = UCase$(tryagain$)
         If tryagain$ = "T" Then GoTo create
     Loop
-ElseIf sumcheck = 1 Then
+End If
+If sumcheck = 1 Then
     Do
         Cls , _RGB(127, 127, 127)
         Color _RGB(50, 255, 139), _RGB(127, 127, 127)
+        Print sumcheck; "out of 4"
         Print "Good Password"
         Print "A strong password should be"
         Color _RGB(0, 255, 0), _RGB(127, 127, 127)
@@ -157,7 +162,8 @@ ElseIf sumcheck = 1 Then
         tryagain$ = UCase$(tryagain$)
         If tryagain$ = "T" Then GoTo create
     Loop
-ElseIf sumcheck = 0 Then
+End If
+If sumcheck = 0 Then
     Open "UserData.txt" For Append As #fh
     Print #fh, id$
     Print #fh, password$
@@ -165,10 +171,12 @@ ElseIf sumcheck = 0 Then
     Do
         Cls , _RGB(127, 127, 127)
         Color _RGB(0, 255, 0), _RGB(127, 127, 127)
+        Print sumcheck; "out of 4"
         Print "Strong Password"
         Print "Account successfully created!"
         Color _RGB(0, 0, 0)
         Print "Press E to return to the menu"
+        _Display
         return$ = InKey$
         return$ = UCase$(return$)
         If return$ = Chr$(69) Then GoTo start:
