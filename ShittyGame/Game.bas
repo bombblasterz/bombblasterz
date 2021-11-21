@@ -69,7 +69,10 @@ Do
                     points$ = Str$(points)
                     points$ = LTrim$(points$)
                     Exit Do
+ 
                 End If
+                                'This next bit of code will be terrible , but bear with it I thought of this during a class and decided to add it in
+                                'I didn't know of any better ways to achieve this at the time , maybe sleep(sec) might've worked? , not sure
                 If sec = 3 Then py = py - 5
                 If sec = 6 Then py = py - 5
                 If sec = 9 Then py = py - 5
