@@ -1,7 +1,6 @@
 - 👋 Hi, I’m @bombblasterz
 - 👀 I’m interested in qb64
 - 🌱 I’m currently learning qb64
-- 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me , T_T#6886 on discord
 
 <!---
