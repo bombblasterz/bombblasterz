@@ -1,3 +1,98 @@
+' Made by Ibrahim Khan
+'
+' Discord : T_T#6886
+'
+' Feel free to use , and edit , as long as you credit me
+'
+'Version 1.01 Patch:
+'
+'FIXED BUGS :
+'Previously drawn pixels changing color gradually
+'CURRENT BUGS:
+'After selecting a brush , and/or a background color/image the program does not rerender your previous drawing
+'FEATURES NOT CODED IN YET:
+'Selecting a brush has no effect
+'Selecting an image has no effect
+'Exporting images
+'Top Bar
+'
+'Version 1.02 Patch:
+'
+'FIXED BUGS:
+'None
+'CURRENT BUGS:
+'When trying to select a brush and/or a background color/image the program does not print selection test
+'FEATURES NOT CODED IN YET:
+'Selecting an image, or a background color has no effect
+'Exporting images
+'Top bar
+'FEATURES CODED IN:
+'Using different brush sizes has an effect now (You can only use sizes 1 to 3 currently)
+'
+'Version 1.03 Patch:
+'
+'FIXED BUGS:
+'None
+'CURRENT BUGS:
+'When trying to select a brush and/or background color/image the program does not print selection text
+'FEATURES NOT CODED IN YET:
+'Selecting an image, or a background color has no effect
+'Exporting images
+'FEATURES CODED IN:
+'Top Bar Partially coded in , no collission detection and no effect for clicking on things
+'
+'Version 1.04 Patch:
+'
+'FIXED BUGS:
+'None
+'CURRENT BUGS:
+'When trying to select a brush and/or background color/image the program does not print selection text
+'FEATURES NOT CODED IN YET:
+'Selecting an image,or a background color has not effect
+'Exporting images
+'FEATURES CODED IN:
+'Added a 4th brush
+'Can now use the + and - keys to raise and lower the brush size , respectively
+'
+'Version 1.05 Patch:
+'
+'FIXED BUGS:
+'None
+'CURRENT BUGS:
+'When trying to select a brush and/or a background color/image the program does not print selection text
+'When redrawing the previous image after picking a new color the program will occasionally popup the color picker ui
+'FEATURES NOT CODED IN YET
+'Selecting an image, or a background color has no effect
+'Exporting images
+'FEATURES CODED IN:
+'Added a color picker UI (Cannot Pick Colors Currently)
+'Programmers note:
+'Unfortunately , I find it extremely difficult to continue development without the use of external resources i.e (Images,fonts,sounds,etc...)
+'
+'Version 1.06 Patch:
+'
+'FIXED BUGS:
+'None
+'CURRENT BUGS:
+'When trying to select a brush and/or a background color/image the program does not print selection text
+'FEATURES NOT CODED IN YET:
+'Color Picker UI Removed (Too Buggy)
+'Selecting an image, or a background color has no effect
+'Exporting images
+'FEATURES CODED IN:
+'None
+'
+'Version 1.07 Patch
+'FIXED BUGS:
+'None
+'CURRENT BUGS:
+'None
+'FEATURES NOT CODED IN YET:
+'Selecting an image , or a background color
+'Exporting images
+'FEATURES CODED IN:
+'Added Color Picker in top bar
+'Made RAM Usage Improvements by making a sub for brush sizes
 debug = 0
 If debug = 1 Then
     Print "Enter screen width"
